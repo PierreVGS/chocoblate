@@ -12,7 +12,7 @@
     <form action="" method="post">
         <input type="text" name="nom_utilisateur" id="nomFormNewUtils" placeholder="Nom utilisateur">
         <input type="text" name="prenom_utilisateur" id="prenomFormNewUtils" placeholder="Prenom utilisateur">
-        <input type="email" name="email_utilisateur" id="" placeholder="Email utilisateur">
+        <input type="email" name="mail_utilisateur" id="" placeholder="Email utilisateur">
         <input type="password" name="password_utilisateur" id="" placeholder="Mot de passe">
         <input type="submit" value="Ajouter" name="submit">
 

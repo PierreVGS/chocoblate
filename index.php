@@ -1,6 +1,9 @@
 <?php
-    use App\Controller\UserController;
+
+use App\Controller\RoleController;
+use App\Controller\UserController;
     include './App/Utils/BddConnect.php';
+    include './App/Utils/Fonctions.php';
     include './App/Model/Utilisateur.php';
     include './App/Controller/UserController.php';
 
@@ -9,15 +12,21 @@
     //test soit l'url a une route sinon on renvoi à la racine
     $path = isset($url['path']) ? $url['path'] : '/';
     //instance des controllers
-    $UserController = new UserController();
+    $userController = new UserController();
+    $roleController = new RoleController();
     //routeur
     switch ($path) {
         case '/chocoblate/':
             include './App/Vue/home.php';
             break;
-        case '/chocoblate/userAdd':
-            include './App/Vue/viewAddUser.php';
+            case '/chocoblate/userAdd':
+                //appel de la fonction insertUser
+                $userController->insertUser();
             break;
+            case './chocoblate/roleAdd':
+                //appel de la fonction insertRole
+                $roleController->insertRole();
+                break;
         default:
             include './App/Vue/error.php';
             break;

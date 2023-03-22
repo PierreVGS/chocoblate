@@ -1,19 +1,19 @@
 <?php
     namespace App\Model;
     use App\Utils\BddConnect;
-    use App\Model\Role;
+    use App\Model\Roles;
 
     class Utilisateur extends BddConnect{
 
         //attributs:
-        private ?int $id_utilisateur;
-        private ?string $nom_utilisateur;
-        private ?string $prenom_utilisateur;
-        private ?string $mail_utilisateur;
-        private ?string $password_utilisateur;
-        private ?string $image_utilisateur;
-        private ?bool $statut_utilisateur;
-        private ?Role $role;
+        private  $id_utilisateur;
+        private  $nom_utilisateur;
+        private  $prenom_utilisateur;
+        private  $mail_utilisateur;
+        private  $password_utilisateur;
+        private  $image_utilisateur;
+        private  $statut_utilisateur;
+        private  $role;
 
         //constructeur:
         public function __construct(){
@@ -48,7 +48,7 @@
             $this->nom_utilisateur = $name;
         }
         public function setPrenomUtilisateur($firstName):void{
-            $this->id_utilisateur = $firstName;
+            $this->prenom_utilisateur = $firstName;
         }
 
         public function setMailUtilisateur($mail):void{
@@ -59,7 +59,7 @@
         }
 
         //methode pour ajouter un utilisateur à la Bdd:
-        public function addUser(){
+        public function addUser():void{
             try{
                 $nom = $this->nom_utilisateur;
                 $prenom = $this->prenom_utilisateur;
@@ -69,15 +69,15 @@
                 $req = $this->connexion()->prepare('INSERT INTO utilisateur(nom_utilisateur, prenom_utilisateur, mail_utilisateur, password_utilisateur) VALUES(?,?,?,?)');
 
                 $req->bindParam(1, $nom, \PDO::PARAM_STR);
-                $req->bindParam(1, $prenom, \PDO::PARAM_STR);
-                $req->bindParam(1, $maill, \PDO::PARAM_STR);
-                $req->bindParam(1, $password, \PDO::PARAM_STR);
+                $req->bindParam(2, $prenom, \PDO::PARAM_STR);
+                $req->bindParam(3, $mail, \PDO::PARAM_STR);
+                $req->bindParam(4, $password, \PDO::PARAM_STR);
 
                 $req->execute();
 
             }
             catch(\Exception $e){
-                die('Erreur : '.$e->getMessage())
+                die('Erreur : '.$e->getMessage());
             }
             
         }
